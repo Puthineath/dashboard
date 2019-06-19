@@ -1,0 +1,516 @@
+{% block title %}
+  <title>Welcome to Sousdey Order</title>
+{% endblock %}
+{% block css_links %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="static/css/datepicker3.css" rel="stylesheet">
+	<link href="static/css/styles.css" rel="stylesheet">
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+{% endblock %}
+
+{% block body %}
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#"><span>Sousdey</span>Admin</a>
+				<ul class="nav navbar-top-links navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+						<em class="fa fa-envelope"></em><span class="label label-danger">15</span>
+					</a>
+						<ul class="dropdown-menu dropdown-messages">
+							<li>
+								<div class="dropdown-messages-box"><a href="profile.html" class="pull-left">
+									<img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
+									</a>
+									<div class="message-body"><small class="pull-right">3 mins ago</small>
+										<a href="#"><strong>John Doe</strong> commented on <strong>your photo</strong>.</a>
+									<br /><small class="text-muted">1:24 pm - 25/03/2015</small></div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="dropdown-messages-box"><a href="profile.html" class="pull-left">
+									<img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
+									</a>
+									<div class="message-body"><small class="pull-right">1 hour ago</small>
+										<a href="#">New message from <strong>Jane Doe</strong>.</a>
+									<br /><small class="text-muted">12:27 pm - 25/03/2015</small></div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="all-button"><a href="#">
+									<em class="fa fa-inbox"></em> <strong>All Messages</strong>
+								</a></div>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+						<em class="fa fa-bell"></em><span class="label label-info">5</span>
+					</a>
+						<ul class="dropdown-menu dropdown-alerts">
+							<li><a href="#">
+								<div><em class="fa fa-envelope"></em> 1 New Message
+									<span class="pull-right text-muted small">3 mins ago</span></div>
+							</a></li>
+							<li class="divider"></li>
+							<li><a href="#">
+								<div><em class="fa fa-heart"></em> 12 New Likes
+									<span class="pull-right text-muted small">4 mins ago</span></div>
+							</a></li>
+							<li class="divider"></li>
+							<li><a href="#">
+								<div><em class="fa fa-user"></em> 5 New Followers
+									<span class="pull-right text-muted small">4 mins ago</span></div>
+							</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="data:image/jpeg;base64,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" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name"><b>Sousdey</b></div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em> Order</a></li>
+			<li><a href="charts.html"><em class="fa fa-bar-chart">&nbsp;</em> Kirimall</a></li>
+			<li><a href="elements.html"><em class="fa fa-toggle-off">&nbsp;</em> Express</a></li>
+			<li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
+			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+				<em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+				</a>
+				<ul class="children collapse" id="sub-item-1">
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
+					</a></li>
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
+					</a></li>
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+					</a></li>
+				</ul>
+			</li>
+			<li><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Dashboard</h1>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="panel panel-container">
+			<div class="row">
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-teal panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
+							<div class="large">120</div>
+							<div class="text-muted">New Orders</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-blue panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
+							<div class="large">52</div>
+							<div class="text-muted">Comments</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-orange panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
+							<div class="large">24</div>
+							<div class="text-muted">New Users</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-red panel-widget ">
+						<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
+							<div class="large">25.2k</div>
+							<div class="text-muted">Page Views</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.row-->
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Site Traffic Overview
+						<ul class="pull-right panel-settings panel-button-tab-right">
+							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+								<em class="fa fa-cogs"></em>
+							</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<ul class="dropdown-settings">
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 1
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 2
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 3
+											</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>New Orders</h4>
+						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Comments</h4>
+						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>New Users</h4>
+						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Visitors</h4>
+						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span></div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default chat">
+					<div class="panel-heading">
+						Chat
+						<ul class="pull-right panel-settings panel-button-tab-right">
+							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+								<em class="fa fa-cogs"></em>
+							</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<ul class="dropdown-settings">
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 1
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 2
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 3
+											</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<ul>
+							<li class="left clearfix"><span class="chat-img pull-left">
+								<img src="http://placehold.it/60/30a5ff/fff" alt="User Avatar" class="img-circle" />
+								</span>
+								<div class="chat-body clearfix">
+									<div class="header"><strong class="primary-font">John Doe</strong> <small class="text-muted">32 mins ago</small></div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc.</p>
+								</div>
+							</li>
+							<li class="right clearfix"><span class="chat-img pull-right">
+								<img src="http://placehold.it/60/dde0e6/5f6468" alt="User Avatar" class="img-circle" />
+								</span>
+								<div class="chat-body clearfix">
+									<div class="header"><strong class="pull-left primary-font">Jane Doe</strong> <small class="text-muted">6 mins ago</small></div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc.</p>
+								</div>
+							</li>
+							<li class="left clearfix"><span class="chat-img pull-left">
+								<img src="http://placehold.it/60/30a5ff/fff" alt="User Avatar" class="img-circle" />
+								</span>
+								<div class="chat-body clearfix">
+									<div class="header"><strong class="primary-font">John Doe</strong> <small class="text-muted">32 mins ago</small></div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc.</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="panel-footer">
+						<div class="input-group">
+							<input id="btn-input" type="text" class="form-control input-md" placeholder="Type your message here..." /><span class="input-group-btn">
+								<button class="btn btn-primary btn-md" id="btn-chat">Send</button>
+						</span></div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						To-do List
+						<ul class="pull-right panel-settings panel-button-tab-right">
+							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+								<em class="fa fa-cogs"></em>
+							</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<ul class="dropdown-settings">
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 1
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 2
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 3
+											</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<ul class="todo-list">
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-1" />
+									<label for="checkbox-1">Make coffee</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-2" />
+									<label for="checkbox-2">Check emails</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-3" />
+									<label for="checkbox-3">Reply to Jane</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-4" />
+									<label for="checkbox-4">Make more coffee</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-5" />
+									<label for="checkbox-5">Work on the new design</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-6" />
+									<label for="checkbox-6">Get feedback on design</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+						</ul>
+					</div>
+					<div class="panel-footer">
+						<div class="input-group">
+							<input id="btn-input" type="text" class="form-control input-md" placeholder="Add new task" /><span class="input-group-btn">
+								<button class="btn btn-primary btn-md" id="btn-todo">Add</button>
+						</span></div>
+					</div>
+				</div>
+			</div><!--/.col-->
+			
+			
+			<div class="col-md-6">
+				<div class="panel panel-default ">
+					<div class="panel-heading">
+						Timeline
+						<ul class="pull-right panel-settings panel-button-tab-right">
+							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+								<em class="fa fa-cogs"></em>
+							</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<ul class="dropdown-settings">
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 1
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 2
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 3
+											</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body timeline-container">
+						<ul class="timeline">
+							<li>
+								<div class="timeline-badge"><em class="glyphicon glyphicon-pushpin"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge primary"><em class="glyphicon glyphicon-link"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="glyphicon glyphicon-camera"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="glyphicon glyphicon-paperclip"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+	
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	<script>
+		window.onload = function () {
+	var chart1 = document.getElementById("line-chart").getContext("2d");
+	window.myLine = new Chart(chart1).Line(lineChartData, {
+	responsive: true,
+	scaleLineColor: "rgba(0,0,0,.2)",
+	scaleGridLineColor: "rgba(0,0,0,.05)",
+	scaleFontColor: "#c5c7cc"
+	});
+};
+	</script>
+		
+{% endblock %}
